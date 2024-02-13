@@ -1,0 +1,8 @@
+*{
+    padding: 0;
+}
+.mat-headline{
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 30px;
+}

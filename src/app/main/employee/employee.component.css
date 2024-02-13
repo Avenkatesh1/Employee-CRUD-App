@@ -1,0 +1,13 @@
+.empControls{
+    width: 100% !important;
+    padding: 5% !important;
+}
+.empControls > * {
+    width: 100% !important;
+}
+.myPadding{
+    padding-bottom: 10px !important;
+}
+.buttonRow button{
+    margin: 5px;
+}
