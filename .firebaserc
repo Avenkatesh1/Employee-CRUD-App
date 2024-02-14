@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "employee-crud-app-753f0": {
+      "hosting": {
+        "employee-crud-app": [
+          "employee-crud-app-753f0"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "employee-crud-app-753f0"
+  }
+}
