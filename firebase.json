@@ -1,0 +1,11 @@
+{
+  "hosting": [
+    {
+      "target": "employee-crud-app",
+      "source": ".",
+      "frameworksBackend": {
+        "region": "us-central1"
+      }
+    }
+  ]
+}

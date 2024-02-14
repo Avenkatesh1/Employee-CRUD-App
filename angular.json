@@ -64,7 +64,13 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -105,6 +111,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "employee-crud-app:build:production",
+              "serveTarget": "employee-crud-app:serve:production"
+            },
+            "development": {
+              "buildTarget": "employee-crud-app:build:development",
+              "serveTarget": "employee-crud-app:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
