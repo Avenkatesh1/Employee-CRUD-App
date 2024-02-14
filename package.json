@@ -2,6 +2,7 @@
   "name": "employee-crud-app",
   "version": "0.0.0",
   "scripts": {
+    "postinstall": "ngcc",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -37,6 +38,7 @@
     "@angular/compiler-cli": "^17.1.0",
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
+    "@types/lodash": "^4.14.202",
     "@types/node": "^18.18.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",

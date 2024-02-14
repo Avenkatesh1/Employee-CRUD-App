@@ -1,0 +1,20 @@
+.hide{
+    display: none;
+}
+mat-footer-row mat-footer-cell{
+    justify-content: center;
+    font-style: italic;
+}
+.mySearch{
+    margin: 10px;
+    padding: 5px;
+}
+.filter{
+    width: 60%;
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    color: red;
+    font-weight: bolder;
+}
