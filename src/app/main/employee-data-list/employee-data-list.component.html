@@ -1,0 +1,67 @@
+<div class="mySearch">
+    <button mat-raised-button (click)="addEmployees()" color="warn">
+    <mat-icon>add</mat-icon>Add Employees</button>
+    <mat-form-field appearance="outline" class="filter">
+       <mat-label>Search</mat-label>
+       <input matInput [(ngModel)]="searchKey" (keyup)="applyFilter()" autocomplete="off">
+       <button  matSuffix 
+       mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+             <mat-icon>close</mat-icon>
+       </button>
+    </mat-form-field>
+</div>
+<div class="mat-elevation-z8">
+    <mat-table [dataSource]="listData" matSort>
+    <ng-container matColumnDef="fullName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.fullName}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="mobile">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.mobile}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="department">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Department</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.department}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="city">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>City</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="gender">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Gender</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.gender}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef >Actions</mat-header-cell>
+        <mat-cell *matCellDef="let row"> 
+        <button mat-icon-button color="primary" (click)="onEdit(row)" matTooltip="Edit">
+            <mat-icon>create</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="onDelete(row.$key)" matTooltip="Delete">
+            <mat-icon>delete_outline</mat-icon>
+        </button>
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="loding">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+            <mat-spinner color="warn"></mat-spinner>
+        </mat-footer-cell>
+    </ng-container>
+    <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+            No Data Found 404 
+        </mat-footer-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns:displayedColumns"></mat-row>
+    <mat-footer-row *matFooterRowDef="['loding']" [ngClass]="{'hide': listData != null}"></mat-footer-row>
+    </mat-table>
+    <mat-footer-row *matFooterRowDef="['noData']"></mat-footer-row>
+
+    <mat-paginator [pageSizeOptions]="[5,10,15,20,30,50]" pageSize="5" showFirstLastButtons></mat-paginator>
+</div>

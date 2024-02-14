@@ -1,3 +1,15 @@
+<div class="toolBar">
+    <mat-toolbar color="warn">
+        <span>
+            {{empService.form.controls['$key'].value? "Update Employee" : "New Employee"}}
+        </span>
+        <span class="fillSpace"></span>
+        <button class="btn-close" mat-stroked-button (click)="onClear()" tabindex="-1">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </mat-toolbar>
+</div>
+
 <form [formGroup]="empService.form" class="myForm">
     <mat-grid-list cols="2" rowHeight="400px">
         <mat-grid-tile>
@@ -29,16 +41,16 @@
             <div class="empControls">
                 <div class="myPadding" class="empControls">
                     <mat-radio-group formControlName="gender">
-                        <mat-radio-button value="1"> Male </mat-radio-button>
-                        <mat-radio-button value="2"> FeMale </mat-radio-button>
-                        <mat-radio-button value="3"> Others </mat-radio-button>
+                        <mat-radio-button value="Male"> Male </mat-radio-button>
+                        <mat-radio-button value="Female"> FeMale </mat-radio-button>
+                        <mat-radio-button value="Others"> Others </mat-radio-button>
                     </mat-radio-group><br><br>
                     <mat-form-field appearance="outline" color="primary">
                         <mat-label>Departments</mat-label>
                         <mat-select formControlName="department">
                             <mat-option>None</mat-option>
                             <ng-container *ngFor="let dep of departments">
-                                <mat-option value="{{dep.id}}">{{dep.name}}</mat-option>
+                                <mat-option value="{{dep.name}}">{{dep.name}}</mat-option>
                             </ng-container>
                         </mat-select>
                     </mat-form-field>
@@ -52,7 +64,7 @@
                         <mat-checkbox formControlName="isPermanent">Permanent Employee</mat-checkbox>
                     </div>
                     <div class="buttonRow">
-                        <button mat-raised-button type="submit" color="primary" [disabled]="empService.form.invalid">Submit</button>
+                        <button mat-raised-button type="submit" (click)="onSubmit()" color="primary" [disabled]="empService.form.invalid">Submit</button>
                         <button mat-raised-button type="submit" color="warn" (click)="onClear()">Reset</button>
                     </div>
 

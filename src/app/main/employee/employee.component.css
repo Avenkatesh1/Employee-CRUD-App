@@ -11,3 +11,17 @@
 .buttonRow button{
     margin: 5px;
 }
+.btn-close{
+    width: 45px;
+    min-width: 0px !important;
+    height: 40px;
+    padding: 0px !important;
+    background-color:#ffffff;
+    color: black;
+}
+.fillSpace{
+    flex: 1 1 auto;
+}
+.toolBar{
+    padding: 15px;
+}

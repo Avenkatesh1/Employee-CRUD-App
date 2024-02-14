@@ -1,5 +1,9 @@
+import { DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { FormGroup, FormControl,Validators } from '@angular/forms';
+import * as _ from  'lodash';
 
 
 @Injectable({
@@ -7,7 +11,9 @@ import { FormGroup, FormControl,Validators } from '@angular/forms';
 })
 export class EmployeService {
 
-  constructor() { }
+   employeeList!: AngularFireList<any>; 
+
+  constructor(public fireBase:AngularFireDatabase, public datePipe:DatePipe, private http:HttpClient) { }
   form: FormGroup = new FormGroup(
     {
       $key: new FormControl(null),
@@ -35,5 +41,44 @@ export class EmployeService {
         isPermanent:false
 
     })
+  }
+
+  getEmployees(){
+    this.employeeList = this.fireBase.list('employees');
+    return this.employeeList.snapshotChanges();
+  }
+
+  insertEmployee(emp:any){
+    this.employeeList.push({
+      fullName: emp.fullName,
+      email: emp.email,
+      mobile: emp.mobile,
+      city: emp.city,
+      gender: emp.gender,
+      department: emp.department,
+      hireDate: emp.hireDate == "" ? ""  :this.datePipe.transform(emp.hireDate,'mm-dd-yyyy'),
+      isPermanent: emp.isPermanent
+    })
+  }
+
+  updateEmployee(emp:any){
+     this.employeeList.update(emp.$key,{
+      fullName: emp.fullName,
+      email: emp.email,
+      mobile: emp.mobile,
+      city: emp.city,
+      gender: emp.gender,
+      department: emp.department,
+      hireDate: emp.hireDate == "" ? ""  :this.datePipe.transform(emp.hireDate,'mm-dd-yyyy'),
+      isPermanent: emp.isPermanent
+     })
+  }
+
+  deleteEmployee($key:string){
+    this.employeeList.remove($key);
+  }
+
+  papulateForm(emp:any){
+     this.form.setValue(_.omit(emp,'departmentName'))
   }
 }
